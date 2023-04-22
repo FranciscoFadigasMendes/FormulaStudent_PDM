@@ -46,7 +46,7 @@ void loop() {
     unsigned long volts_print_time = 0, can_time = 0;
 
     //CAN Bus Periodic Test Message
-    if( (millis() - can_time) > 1000){  // de 1000ms em 1000ms envia uma mensagem por CAN
+    if( (millis() - can_time) > 1000){  // Every Second (1000ms) Sends a message
       can_time = millis();
       can_bus();
     }
@@ -54,7 +54,7 @@ void loop() {
     cooling_board(); 
 
     datalogger();
-    
+
     brake_light();
 
     //Print Pot Value
@@ -69,8 +69,6 @@ void loop() {
 
 void can_bus(){
 
-  int buttonValue,adc4Value;
-
   //CAN Bus Periodic Test Message
   CAN1.TXpacketBegin(0x69,0);
   CAN1.TXpacketLoad(10);  
@@ -78,28 +76,30 @@ void can_bus(){
 
   Serial.println("TEST MESSAGE SENT");
 
-  //Signals the Cooling Board to Turn on the Fan
-  adc4Value = analogRead(ADCPIN4);
-  buttonValue = ((adc4Value * 3.3) / 4095);
-
-  if(buttonValue>1.5){
-    CAN1.TXpacketBegin(0x12,0);      
-    CAN1.TXpacketLoad(20);  
-    CAN1.TXpackettransmit();
-    Serial.println("TURN ON FAN"); 
-  }
-
 }
 
 //----------------------------------------------------------------
 
 void cooling_board(){
 
+    int buttonValue,adc4Value;
+
     //Power On Values
     if(voltValue >= 0.5)     
       digitalWrite(23, HIGH); 
     if(voltValue < 0.5)
       digitalWrite(23, LOW); 
+
+    //Signals the Cooling Board to Turn on the Fan
+    adc4Value = analogRead(ADCPIN4);
+    buttonValue = ((adc4Value * 3.3) / 4095);
+
+    if(buttonValue>1.5){
+      CAN1.TXpacketBegin(0x12,0);      
+      CAN1.TXpacketLoad(20);  
+      CAN1.TXpackettransmit();
+      Serial.println("TURN ON FAN"); 
+  }
 
 }
 
