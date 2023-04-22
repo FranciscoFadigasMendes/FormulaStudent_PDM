@@ -1,6 +1,6 @@
 /*
 
-Description: Mock PDM to Place on the Test Board
+Description: Mock PDM (Power Distribution Module) to Place on the Test Board
 
 Author: Francisco Fadigas Mendes
 
@@ -45,14 +45,16 @@ void loop() {
 
     unsigned long volts_print_time = 0, can_time = 0;
 
-    //Mensagem Teste CAN
+    //CAN Bus Periodic Test Message
     if( (millis() - can_time) > 1000){  // de 1000ms em 1000ms envia uma mensagem por CAN
       can_time = millis();
       can_bus();
     }
     
     cooling_board(); 
+
     datalogger();
+    
     brake_light();
 
     //Print Pot Value
@@ -69,21 +71,22 @@ void can_bus(){
 
   int buttonValue,adc4Value;
 
-  CAN1.TXpacketBegin(0x600,0);
+  //CAN Bus Periodic Test Message
+  CAN1.TXpacketBegin(0x69,0);
   CAN1.TXpacketLoad(10);  
   CAN1.TXpackettransmit();
 
-  Serial.println("Mensagem Enviada");
+  Serial.println("TEST MESSAGE SENT");
 
-  //Ligar a Ventoinha
+  //Signals the Cooling Board to Turn on the Fan
   adc4Value = analogRead(ADCPIN4);
   buttonValue = ((adc4Value * 3.3) / 4095);
 
   if(buttonValue>1.5){
-    CAN1.TXpacketBegin(0x69,0);      
+    CAN1.TXpacketBegin(0x12,0);      
     CAN1.TXpacketLoad(20);  
     CAN1.TXpackettransmit();
-    Serial.println("Mensagem Enviada"); 
+    Serial.println("TURN ON FAN"); 
   }
 
 }
