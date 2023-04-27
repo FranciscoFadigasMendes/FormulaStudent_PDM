@@ -24,7 +24,7 @@ TWAI_Interface CAN1(1000,4,5); // BaudRate/1000 , TX , RX
 
 //Global Variables
 float voltValue;
-int increment = 0;
+int increment = 0,FAN;
 unsigned long volts_print_time = 0, can_time = 0, cb_time=0;
 
 //----------------------------------------------------------------
@@ -68,8 +68,11 @@ void loop() {
 void can_bus(){
 
   //CAN Bus Periodic Test Message
-  CAN1.TXpacketBegin(0x10,0);
+  CAN1.TXpacketBegin(0x69,0);
+
   CAN1.TXpacketLoad(10); 
+  CAN1.TXpacketLoad(FAN); 
+           
   CAN1.TXpackettransmit();
 
   Serial.println("TEST MESSAGE SENT");
@@ -96,23 +99,13 @@ void cooling_board(){
     adc2Value = analogRead(ADCPIN2_2);
     cooling_power = ((adc4Value * 3.3) / 4095);
 
-    if(buttonValue>1.5){
-
+    if(buttonValue>1.5)
       increment++;
 
-      if(increment % 2 == 0){
-        CAN1.TXpacketBegin(0x20,0);      
-        CAN1.TXpacketLoad(20);  
-        CAN1.TXpackettransmit();
-        Serial.println("TURN ON FAN"); 
-      }else{
-        CAN1.TXpacketBegin(0x20,1);      
-        CAN1.TXpacketLoad(30);  
-        CAN1.TXpackettransmit();
-        Serial.println("TURN OFF FAN"); 
-      }
-      
-  }
+    if(increment % 2 == 0)
+      FAN=20;   
+    else
+      FAN=30;  
 
 }
 
