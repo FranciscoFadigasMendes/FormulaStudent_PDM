@@ -101,7 +101,7 @@ void cooling_board(){
       increment++;
 
       if(increment % 2 == 0){
-        CAN1.TXpacketBegin(0x20,1);      
+        CAN1.TXpacketBegin(0x20,0);      
         CAN1.TXpacketLoad(20);  
         CAN1.TXpackettransmit();
         Serial.println("TURN ON FAN"); 
@@ -111,7 +111,6 @@ void cooling_board(){
         CAN1.TXpackettransmit();
         Serial.println("TURN OFF FAN"); 
       }
-
       
   }
 
