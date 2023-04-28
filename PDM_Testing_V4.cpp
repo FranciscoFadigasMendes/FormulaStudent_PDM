@@ -9,10 +9,10 @@ Author: Francisco Fadigas Mendes
 #include <Arduino.h>
 #include <ESP32_CAN.h>
 
-#define ADCPIN_5 A5
-#define ADCPIN_4 A4
 #define ADCPIN_0 A0
-
+#define ADCPIN_4 A4
+#define ADCPIN_5 A5
+#define ADCPIN_12 A12
 
 //Functions
 void can_bus();
@@ -23,7 +23,7 @@ void terminal();
 TWAI_Interface CAN1(1000,4,5); // BaudRate/1000 , TX , RX
 
 //Global Variables
-float voltValue;
+float PotVoltValue;
 int increment = 0,FAN;
 unsigned long volts_print_time = 0, can_time = 0, cb_time=0;
 
@@ -76,9 +76,9 @@ void cooling_board(){
     float cooling_power;
 
     //Power On Values
-    if(voltValue >= 0.5)     
+    if(PotVoltValue >= 0.5)     
       digitalWrite(23, HIGH); 
-    if(voltValue < 0.5)
+    if(PotVoltValue < 0.5)
       digitalWrite(23, LOW); 
 
     //Signals the Cooling Board to Turn on the Fan
@@ -108,13 +108,20 @@ void cooling_board(){
 
 void terminal(){
 
-  int adc5Value;
+  int adc5Value,adc12Value,InputVoltValue;
 
     adc5Value = analogRead(ADCPIN_5);
-    voltValue = ((adc5Value * 3.3) / 4095);
+    PotVoltValue = ((adc5Value * 3.3) / 4095);
+
+    adc12Value = analogRead(ADCPIN_12);
+    InputVoltValue = ((adc12Value * 3.3) / 4095);
     
+    Serial.print("POT = ");
+    Serial.print(PotVoltValue, 3);
+    Serial.println(" V ");
+
     Serial.print("Volts = ");
-    Serial.print(voltValue, 3);
+    Serial.print(InputVoltValue, 3);
     Serial.println(" V ");
 
 }
