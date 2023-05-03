@@ -88,7 +88,7 @@ void cooling_board(){
 
     adc0Value = analogRead(ADCPIN_0);
     cooling_p = ((adc0Value * 3.3) / 4095);
-    cooling_power = cooling_p / ( 0,0031 * 50);
+    cooling_power = cooling_p / ( 0.0048 );
 
     if(buttonValue>1.5)
       increment++;
@@ -104,6 +104,10 @@ void cooling_board(){
 
     Serial.print("Increment: ");
     Serial.println(increment);
+
+    if(buttonValue > 3)
+      Serial.print("Button ");
+
 }
 
 //----------------------------------------------------------------
