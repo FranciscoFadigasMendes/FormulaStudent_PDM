@@ -85,7 +85,7 @@ void cooling_board(){
     adc0Value = analogRead(ADCPIN_0);
     cooling_p = ((adc0Value * 3.3) / 4095);
 
-    cooling_power = ((adc0Value * 3.3) / 4095) / (0.002*50);
+    cooling_power = cooling_p / (0.031*50);
 
     if(buttonValue>1.5)
       increment++;
@@ -100,9 +100,8 @@ void cooling_board(){
       Serial.print(cooling_power,2);
       Serial.println(" mA");
     } 
-
     if(cooling_power < 20)
-      Serial.println("Current Value Below 20mA ");
+      Serial.println("Current Value Below 20mA");
 
     Serial.print("Increment: ");
     Serial.println(increment);
@@ -137,7 +136,7 @@ void terminal(){
     Serial.print(PotVoltValue, 3);
     Serial.println(" V ");
      
-    InputVoltValue = InputVoltValue_ADC * 12;
+    InputVoltValue = InputVoltValue_ADC * 11,8;
 
     Serial.print("Volts = ");
     Serial.print(InputVoltValue, 3);
