@@ -107,7 +107,7 @@ void can_bus(){
   CAN1.TXpacketBegin(0x20, 0);
 
     CAN1.TXpacketLoad(0);
-    CAN1.TXpacketLoad(BAR);
+    CAN1.TXpacketLoad(BAR); 
     CAN1.TXpacketLoad(0);
     CAN1.TXpacketLoad(0);
     CAN1.TXpacketLoad(0);
@@ -117,17 +117,17 @@ void can_bus(){
 
   CAN1.TXpackettransmit();
   //.....................CAN ID20 MESSAGE END......................
-delay(100);
+
   //.....................CAN ID40 MESSAGE BEGIN.................
   CAN1.TXpacketBegin(0x40, 0);
 
   // BYTE 0/1/2 -- OUTPUTS (8*3)
-  CAN1.TXpacketLoad(byte_1_out);
-  CAN1.TXpacketLoad(byte_2_out);
-  CAN1.TXpacketLoad(byte_3_out);
+  CAN1.TXpacketLoad(byte_1_out); 
+  CAN1.TXpacketLoad(byte_2_out); 
+  CAN1.TXpacketLoad(byte_3_out); 
 
   // BYTE 3 -- INPUTS (8*1)
-  CAN1.TXpacketLoad(byte_1_in);
+  CAN1.TXpacketLoad(byte_1_in); 
 
   // BYTE 4/5 -- LV VOLTAGE
   CAN1.TXpacketLoad(InputVoltValue_Offset);      // LOW BYTE
@@ -139,7 +139,7 @@ delay(100);
 
   CAN1.TXpackettransmit();
   //.....................CAN ID40 MESSAGE END......................
-delay(100);
+
   //.....................CAN ID41 MESSAGE BEGIN....................
   CAN1.TXpacketBegin(0x41, 0);
 
@@ -161,7 +161,7 @@ delay(100);
 
   CAN1.TXpackettransmit();
   //......................CAN ID41 MESSAGE END.........................
-delay(100);
+
   //.....................CAN ID42 MESSAGE BEGIN........................
   CAN1.TXpacketBegin(0x42, 0);
 
