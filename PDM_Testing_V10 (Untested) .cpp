@@ -57,7 +57,7 @@ void setup()
   pinMode(12, INPUT); // ADC
   pinMode(13, INPUT); // ADC
 
-  pinMode(5, INPUT); // Button
+  pinMode(35, INPUT); // Button
 
   pinMode(23, OUTPUT); // Cooling Board
   pinMode(18, OUTPUT); // DataLogger
