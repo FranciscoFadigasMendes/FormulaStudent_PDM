@@ -227,42 +227,41 @@ void output_status(){
   output_status_byte3[7] = 0;
 
 
-Serial.print("Byte Output 1: ");
-for(int i=0;i<8;i++){
-  byte_1_out = output_status_byte1[7-i];
-  byte_1_out << 1;
-  Serial.print(byte_1_out,BIN);
-}
+  Serial.print("Byte Output 1: ");
+  for(int i=0;i<8;i++){
+    byte_1_out = output_status_byte1[7-i];
+    byte_1_out << 1;
+    Serial.print(byte_1_out,BIN);
+  }
   Serial.println("");
 
-Serial.print("Byte Output 2: ");
-for(int i=0;i<8;i++){
-  byte_2_out = output_status_byte2[7-i];
-  byte_2_out << 1;
-  Serial.print(byte_2_out,BIN);
-
-}
+  Serial.print("Byte Output 2: ");
+  for(int i=0;i<8;i++){
+    byte_2_out = output_status_byte2[7-i];
+    byte_2_out << 1;
+    Serial.print(byte_2_out,BIN);
+  }
   Serial.println("");
 
-Serial.print("Byte Output 3: ");
-for(int i=0;i<8;i++){
-  byte_3_out = output_status_byte3[7-i];
-  byte_3_out << 1;
-  Serial.print(byte_3_out,BIN);
-}
+  Serial.print("Byte Output 3: ");
+  for(int i=0;i<8;i++){
+    byte_3_out = output_status_byte3[7-i];
+    byte_3_out << 1;
+    Serial.print(byte_3_out,BIN);
+  }
   Serial.println("");
 
   // Prints BYTE 1
- Serial.print("BYTE 1 OUT :");
- Serial.println(byte_1_out);
+  Serial.print("BYTE 1 OUT :");
+  Serial.println(byte_1_out);
 
   // Prints BYTE 2
- Serial.print("BYTE 2 OUT :");
- Serial.println(byte_2_out);
+  Serial.print("BYTE 2 OUT :");
+  Serial.println(byte_2_out);
 
   // Prints BYTE 3
- Serial.print("BYTE 3 OUT :");
- Serial.println(byte_3_out);
+  Serial.print("BYTE 3 OUT :");
+  Serial.println(byte_3_out);
 
 }
 
@@ -270,27 +269,27 @@ for(int i=0;i<8;i++){
 
 void input_status(){
 
- input_status_byte1[0] = digitalRead(35); //Button State;
- input_status_byte1[1] = 0;
- input_status_byte1[2] = 0;
- input_status_byte1[3] = 0;
- input_status_byte1[4] = 0;
- input_status_byte1[5] = 0;
- input_status_byte1[6] = 0;
- input_status_byte1[7] = 0;
+  input_status_byte1[0] = digitalRead(35); //Button State;
+  input_status_byte1[1] = 0;
+  input_status_byte1[2] = 0;
+  input_status_byte1[3] = 0;
+  input_status_byte1[4] = 0;
+  input_status_byte1[5] = 0;
+  input_status_byte1[6] = 0;
+  input_status_byte1[7] = 0;
 
-Serial.print("Byte Input 1: ");
-for(int i=0;i<8;i++){
-  byte_1_in = input_status_byte1[7-i];
-  byte_1_in << 1;
-  Serial.print(byte_1_in,BIN);
-}
-  Serial.println("");
+  Serial.print("Byte Input 1: ");
+  for(int i=0;i<8;i++){
+    byte_1_in = input_status_byte1[7-i];
+    byte_1_in << 1;
+    Serial.print(byte_1_in,BIN);
+  }
+   Serial.println("");
 
 
- // Prints BYTE 3
- Serial.print("BYTE 1 IN :");
- Serial.println(byte_1_in);
+  // Prints BYTE 3
+  Serial.print("BYTE 1 IN :");
+  Serial.println(byte_1_in);
  
 }
 
