@@ -50,14 +50,14 @@ void setup()
  
   Serial.begin(115200);
 
-  pinMode(34, INPUT); // ADC
-  pinMode(25, INPUT); // ADC
-  pinMode(26, INPUT); // ADC
-  pinMode(14, INPUT); // ADC
-  pinMode(4, INPUT); // ADC
-  pinMode(13, INPUT); // ADC
+  pinMode(34, INPUT);  // ADC
+  pinMode(25, INPUT);  // ADC
+  pinMode(26, INPUT);  // ADC
+  pinMode(14, INPUT);  // ADC
+  pinMode(4, INPUT);   // ADC
+  pinMode(13, INPUT);  // ADC
 
-  pinMode(35, INPUT); // Button
+  pinMode(35, INPUT);  // Button
 
   pinMode(23, OUTPUT); // Cooling Board
   pinMode(18, OUTPUT); // DataLogger
@@ -252,6 +252,18 @@ for(int i=0;i<8;i++){
 }
   Serial.println("");
 
+  // Prints BYTE 1
+ Serial.print("BYTE 1 OUT :");
+ Serial.println(byte_1_out);
+
+  // Prints BYTE 2
+ Serial.print("BYTE 2 OUT :");
+ Serial.println(byte_2_out);
+
+  // Prints BYTE 3
+ Serial.print("BYTE 3 OUT :");
+ Serial.println(byte_3_out);
+
 }
 
 //----------------------------------------------------------------
@@ -274,6 +286,11 @@ for(int i=0;i<8;i++){
   Serial.print(byte_1_in,BIN);
 }
   Serial.println("");
+
+
+ // Prints BYTE 3
+ Serial.print("BYTE 1 IN :");
+ Serial.println(byte_1_in);
  
 }
 
@@ -416,22 +433,6 @@ void terminal(){
   Serial.print(BAR);
   Serial.println(" Bar");
 
-// Prints BYTE 1
- Serial.print("BYTE 1 OUT :");
- Serial.println(byte_1_out);
-
-  // Prints BYTE 2
- Serial.print("BYTE 2 OUT :");
- Serial.println(byte_2_out);
-
-  // Prints BYTE 3
- Serial.print("BYTE 3 OUT :");
- Serial.println(byte_3_out);
-
-   // Prints BYTE 3
- Serial.print("BYTE 1 IN :");
- Serial.println(byte_1_in);
-
 // Prints Module 1 Power
  Serial.print("Module 1 Power:");
  Serial.println(module_1_power);
@@ -443,6 +444,11 @@ void terminal(){
 // Prints Module 3 Power
  Serial.print("Module 3 Power:");
  Serial.println(module_3_power);
+
+
+// Prints Total Power
+ Serial.print("Total Power:");
+ Serial.println(TotalPWR);
   
 }
 
