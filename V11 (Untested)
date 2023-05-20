@@ -110,7 +110,7 @@ void loop()
 
 void can_bus(){
 
-  // Source Voltage OFFSET
+  // OFFSETS
   int InputVoltValue_Offset = InputVoltValue * 100;
   int TotalPWR_Offset = TotalPWR * 100;
   int module_1_power_offset = module_1_power * 100;
@@ -373,7 +373,6 @@ void power_monitoring(){
   // Calculates Full Power Consumption
   TotalPWR = module_1_power + module_2_power + module_3_power;
 
-
 }
 
 //----------------------------------------------------------------
@@ -394,11 +393,11 @@ void brake_light(){
   // Signals the Cooling Board to Turn on the Fan
   buttonValue = digitalRead(35);
 
-  // Increments Every th\e Button is Pressed
+  // Increments Every the Button is Pressed
   if (buttonValue)
     increment++;
 
-  // Even Number -> FAN = 6 ; Odd Number -> FAN = 0
+  // Even Number -> Bar = 6 ; Odd Number -> Bar = 0
   if (increment % 2 == 0)
     BAR = 80;
   else
@@ -433,22 +432,22 @@ void terminal(){
   Serial.print(BAR);
   Serial.println(" Bar");
 
-// Prints Module 1 Power
- Serial.print("Module 1 Power:");
- Serial.println(module_1_power);
+  // Prints Module 1 Power
+  Serial.print("Module 1 Power:");
+  Serial.println(module_1_power);
 
-// Prints Module 2 Power
- Serial.print("Module 2 Power:");
- Serial.println(module_2_power);
+  // Prints Module 2 Power
+  Serial.print("Module 2 Power:");
+  Serial.println(module_2_power);
 
-// Prints Module 3 Power
- Serial.print("Module 3 Power:");
- Serial.println(module_3_power);
+  // Prints Module 3 Power
+  Serial.print("Module 3 Power:");
+  Serial.println(module_3_power);
 
 
-// Prints Total Power
- Serial.print("Total Power:");
- Serial.println(TotalPWR);
+  // Prints Total Power
+  Serial.print("Total Power:");
+  Serial.println(TotalPWR);
   
 }
 
